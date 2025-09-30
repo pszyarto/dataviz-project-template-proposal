@@ -31,30 +31,46 @@ This dataset lets me compare adoption, output, economic effects, workforce effec
 
 ## Questions & Tasks
 
-The following tasks and questions will drive the visualization and interaction decisions for this project:
+These questions drive the design and interactions:
+1.	How does AI adoption change over time by industry and country?
+Task: Track AI Adoption Rate (%) across years; compare slopes across industries.
+2.	Is there a relationship between adoption and output?
+Task: Check correlation between AI Adoption Rate (%) (X) and AI-Generated Content Volume (Y), by industry and year.
+3.	What are the trade-offs between revenue gains and job displacement?
+Task: Plot Revenue Increase (%) vs Job Loss (%) with size = Market Share; highlight industries in each quadrant.
+4.	Do regulation and trust move together?
+Task: Compare Consumer Trust (%) across Regulation Status levels; facet by region or industry.
+5.	Which tools dominate where?
+Task: Summarize Top AI Tools Used by industry/country and relate to Market Share.
+6.	Where is collaboration actually happening?
+Task: Explore Human–AI Collaboration Rate (%) vs Adoption to spot sectors using AI as augmentation vs automation.
 
- * (insert your question or task here) How does the X vary over time?
- * (insert your question or task here) Is there any correlation between X and Y?
- * (insert your question or task here) Are there interesting spatial patterns in X?
- * (insert your question or task here) How many X are there across different Y?
 
 ## Sketches
 
-(insert one or more hand-drawn sketches of interactive visualizations that you imagine)
-(describe each sketch - how is the data visualized, what are the interactions, and how do these relate to the questions/tasks)
+<img width="518" height="290" alt="image" src="https://github.com/user-attachments/assets/cea1f4a5-df3b-4e0e-864d-312b9f568562" />
+
+
 
 
 ## Prototypes
 
-I’ve created a proof of concept visualization of this data. It's a ... and it shows ...
+I’ve created a proof-of-concept interactive scatter plot:
 
-[![image](https://user-images.githubusercontent.com/68416/65240758-9ef6c980-daff-11e9-9ffa-e35fc62683d2.png)](https://vizhub.com/curran/eab039ad1765433cb51aad167d9deae4)
+•	What it shows: Any two chosen metrics (e.g., AI Adoption Rate (%) vs AI-Generated Content Volume).
+Color = Industry; optional size = Market Share (sqrt scale).
 
-(please put a screenshot of one or more visualizations of this dataset you already made, for previous assignments, and link to them)
+•	Interactions:
+o	Year & Industry filters
+o	X/Y metric dropdowns
+o	Percent axis toggles with proper tick formatting
+o	Tooltips (Country · Industry · Year + exact values)
+o	Optional mean aggregation when “All years” is selected (reduces clutter)
 
-You can put images into here by pasting them into issues.
+•	Why it works: A scatter is the fastest way to see relationships and outliers across multiple sectors and years. The controls turn one view into a compact exploration tool that answers several questions without leaving the page.
 
-You can make images into links like this:
+
+<img width="1310" height="607" alt="image" src="https://github.com/user-attachments/assets/3f7bb0bc-9bdf-47cf-9d46-2910a88b52a1" />
 
 ```
 [![image](https://user-images.githubusercontent.com/68416/65240758-9ef6c980-daff-11e9-9ffa-e35fc62683d2.png)](https://vizhub.com/curran/eab039ad1765433cb51aad167d9deae4)
@@ -65,8 +81,98 @@ Also, you can study the [source](https://raw.githubusercontent.com/curran/datavi
 
 ## Open Questions
 
-(describe any fear, uncertainty, or doubt you’re having about the feasibility of implementing the sketched system. For example, “I’m not sure where to get the geographic shapes to build a map from this data” or “I don’t know how to resolve the codes to meaningful names” … Feel free to delete this section if you’re confident.)
+•	Percent vs. absolute scales. Some columns are percentages (0–100), others are counts/volumes. I’m confident about formatting, but I’m still deciding when to force 0–100 domains vs. auto-fit to data (especially after filtering/aggregation).
+Mitigation: add a per-axis toggle (already partially implemented) and show min/max in the UI so users understand the current scale.
+
+•	Aggregation when “All years” is selected. Right now I average X, Y (and size if present) across years per Country×Industry. Is mean the right summary (vs. median or last year)?
+Mitigation: add a summary selector (mean/median/latest) and show the N of observations in the tooltip.
+
+•	Outlier handling & readability. Content Volume can be skewed; a few points can dominate size/position.
+Mitigation: add log scale toggle (especially for Y), and a size legend with cap + “≥” bucket.
+
+•	Category explosion in color legend. Some filters may leave >10 industries, and the legend truncates.
+Mitigation: add searchable multi-select for Industry plus a “highlight selected” mode; allow “Top K by size” filter.
+
+•	Tooltip overlap and dense clusters. Overplotting can make identical/similar points hard to hover.
+Mitigation: small jitter, optional Voronoi/quad-tree hover, and a focus state (dim others on hover/selection).
+
+•	Data hygiene. Mixed CSV/TSV, stray percent signs, and possible 0–1 vs. 0–100 inputs.
+Mitigation: keep robust coercion; add a tiny data validation panel (rows parsed, dropped, columns detected).
+
+•	Comparability across geographies. Some variables might not be directly comparable across countries due to methodology.
+Mitigation: document assumptions in README; allow per-country normalization (e.g., z-scores) as an advanced toggle.
+
+•	Performance at scale. If the dataset grows (thousands of rows), DOM circles and tooltips may get sluggish.
+Mitigation: switch to canvas rendering for marks while keeping SVG axes/labels if needed.
+
+•	Accessibility & export. Need keyboard navigation and image export for reports.
+Mitigation: add ARIA labels, focus order, and a “Download PNG” button.
+
 
 ## Milestones
 
-(for each week, estimate what would be accomplised)
+Week 1 — Stabilize the core scatter (done / polish)
+
+•	Finalize parsing (CSV/TSV auto-detect, percent coercion).
+
+•	Confirm default encodings: X = AI Adoption Rate (%), Y = AI-Generated Content Volume, Color = Industry, Size = Market Share.
+
+•	Add data validation panel (rows loaded, columns detected, dropped rows count).
+
+•	README: dataset description + provenance.
+
+Week 2 — Usability & clarity
+
+•	Add size legend (3–4 bubbles with labeled values).
+
+•	Add log/linear toggle per axis (start with Y).
+
+•	Add quadrant overlay (median/mean crosshairs) with counts per quadrant and short guidance text.
+
+•	Improve tooltips (aligned formatting, N when aggregated, size metric label).
+
+Week 3 — Faceting and time
+
+•	Build Trust × Regulation small multiples (3 columns: Lenient/Moderate/Strict; same X/Y per facet).
+
+•	Add “All years aggregation method” selector (mean/median/latest).
+
+•	Keyboard focus order + ARIA labels for controls.
+
+Week 4 — Trends view
+
+•	Implement slope graph / line chart: Y = Adoption (%), X = Year; one line per Industry within selected Country (or vice-versa).
+
+•	Add legend click to isolate/hide lines; tooltip with delta vs. previous year.
+
+Week 5 — Filtering power & highlights
+
+•	Replace Industry single-select with multi-select + search; add highlight mode (non-selected dim to 20–30% opacity).
+
+•	Add Top K filter by size or by X×Y “impact” score.
+
+•	Persist UI state in URL hash so views are shareable.
+
+Week 6 — Performance & refinement
+
+•	Add optional canvas renderer for points when row count > threshold; keep SVG axes/legend.
+
+•	Add Voronoi/quad-tree hover to reduce tooltip flicker in dense areas.
+
+•	Mobile layout pass (controls wrap, legend collapses).
+
+Week 7 — Storytelling & export
+
+•	Add an annotation layer (callouts for notable outliers or policy changes).
+
+•	Download PNG / Copy to clipboard export.
+
+•	“About this data” panel with caveats and definitions.
+
+Week 8 — Polish, tests, submission
+
+•	Cross-browser check, light unit tests for parsing/formatting utilities.
+
+•	Final README with screenshots, interaction guide, and example analysis answers to the project questions.
+•	Record a short demo gif/video.
+
