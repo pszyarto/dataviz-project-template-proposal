@@ -2,7 +2,31 @@
 
 ## Data
 
-The data I propose to visualize for my project is ...
+The data I propose to visualize is a Global AI Adoption & Impact table that I already integrated into my project.
+Each row represents a Country × Year × Industry observation with the following fields:
+•	Country, Year, Industry
+
+•	AI Adoption Rate (%)
+
+•	AI-Generated Content Volume (TBs per year)
+
+•	Job Loss Due to AI (%)
+
+•	Revenue Increase Due to AI (%)
+
+•	Human–AI Collaboration Rate (%)
+
+•	Top AI Tools Used (e.g., ChatGPT, Claude, Midjourney)
+
+•	Regulation Status (Lenient / Moderate / Strict)
+
+•	Consumer Trust in AI (%)
+
+•	Market Share of AI Companies (%)
+This dataset lets me compare adoption, output, economic effects, workforce effects, and policy/trust context across places, industries, and time.
+
+
+
 
 
 ## Questions & Tasks
