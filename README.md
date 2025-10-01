@@ -76,8 +76,22 @@ o	Optional mean aggregation when “All years” is selected (reduces clutter)
 [![image](https://user-images.githubusercontent.com/68416/65240758-9ef6c980-daff-11e9-9ffa-e35fc62683d2.png)](https://vizhub.com/curran/eab039ad1765433cb51aad167d9deae4)
 ```
 
+For my Project Progress Assisgment for October 01, I was able to make updates to my model, which included the following: 
 
-Also, you can study the [source](https://raw.githubusercontent.com/curran/dataviz-project-template-proposal/master/README.md) to figure out Markdown formatting. You can use the GitHub built-in editor to edit the document.
+•	Legend placement & layout: Moved the categorical legend into a right-side gutter and added a soft background so it no longer overlaps the Y-axis. Increased right margin to make room.
+
+•	Size legend: Added a compact bubble legend (3 reference sizes via quantiles) that updates with filters and shows the current size metric’s label/units.
+
+•	Y scale toggle (Linear/Log): New control to switch Y between linear and log. Safely falls back to linear if values are non-positive.
+
+•	Quadrant overlay: Draws median crosshairs, shows counts per quadrant, and includes a short guidance note explaining the axes and medians.
+
+•	Improved tooltips: Consistent number/percent formatting, shows N when rows are aggregated (All years), and includes the size metric name/value when used.
+
+•	Defaults & robustness: Smarter column detection (adoption, displacement, volume, market share), percent-aware tick labels, sqrt size scaling, and aggregation to Country×Industry means when “All years” is selected.
+
+<img width="1477" height="602" alt="image" src="https://github.com/user-attachments/assets/2407f8d2-2245-4c12-af90-5acf09e0b923" />
+
 
 ## Open Questions
 
