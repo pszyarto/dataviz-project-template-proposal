@@ -92,6 +92,33 @@ For my Project Progress Assisgment for October 01, I was able to make updates to
 
 <img width="1477" height="602" alt="image" src="https://github.com/user-attachments/assets/2407f8d2-2245-4c12-af90-5acf09e0b923" />
 
+October 07, 2025 Updates
+What’s new
+•	Trust × Regulation small multiples: you can flip into a 3-up view (Lenient / Moderate / Strict). All three facets share the same X/Y scales and encodings, so differences pop without mental rescaling.
+
+•	“All years” aggregation selector: choose mean / median / latest when viewing multiple years. This lets us compare stable centers (median), average behavior (mean), or the most recent snapshot (latest) without changing filters.
+
+•	A11y + keyboard flow: every control now has an associated <label for> + id, ARIA labels, and a clean tab order. You can fully operate the viz via keyboard.
+
+What stayed from Week 2
+•	Right-side industry legend (no longer collides with axes) + size legend (three reference bubbles).
+
+•	Y linear/log toggle, quadrant medians overlay (single-view), and improved tooltips (consistent number/percent formatting, N shown when aggregated, size metric included).
+
+•	Robust column detection, percent-aware ticks, sqrt bubble sizing.
+
+Why this matters
+•	Faceting makes policy context (regulation status) immediately comparable—same frame, different slices.
+
+•	Aggregation choice makes “All years” honest: you can decide which summary best fits the question.
+
+•	Accessibility upgrades make it usable for more folks and easier to demo live.
+
+<img width="1909" height="649" alt="image" src="https://github.com/user-attachments/assets/d9e4d66e-4432-4434-916a-ec1eca5f427b" />
+
+
+
+
 
 ## Open Questions
 
