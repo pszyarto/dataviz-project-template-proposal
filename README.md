@@ -117,6 +117,37 @@ Why this matters
 <img width="1909" height="649" alt="image" src="https://github.com/user-attachments/assets/d9e4d66e-4432-4434-916a-ec1eca5f427b" />
 
 
+What’s new October 21, 2025
+
+Trends view (slope/line chart): Y = AI Adoption Rate (%), X = Year; one line per Industry within the selected Country.
+
+Legend interactions: Click a legend item to isolate/hide a line (great for decluttering).
+
+Temporal tooltip: Shows value and Δ vs previous year on hover.
+
+Unified view switcher: A top control lets you jump between Scatter and Trends in the same app.
+
+Quality-of-life: Clearer titles/labels that reflect filters; right-side legend panel spacing refined.
+
+What stayed from last week
+
+Explorable Scatter core: User-selectable X/Y metrics, Year & Industry filters, percent tick toggles.
+
+Quadrant overlay: Median crosshairs with counts per quadrant for quick “gain vs pain” reading.
+
+Size legend: Quantile-sized bubbles (when a size metric is active) remain for scale context.
+
+Faceting by Regulation: Optional 3-up small multiples (Lenient / Moderate / Strict) with shared scales.
+
+All-years aggregation options: Mean / Median / Latest still available for rollups.
+
+Accessibility pass: Labeled controls, keyboard focus order, ARIA attributes.
+
+Net effect: last week’s scatter stays your comparative “first look,” while the new Trends view adds direction and momentum over time, making it easier to explain how and how fast industries are moving—not just where they are right now.
+
+<img width="1240" height="651" alt="image" src="https://github.com/user-attachments/assets/0ca460b5-5240-4040-b98e-1cd1f3b01c93" />
+
+<img width="1079" height="662" alt="image" src="https://github.com/user-attachments/assets/6c9fe9e6-b9d6-4e74-a536-f6185597312d" />
 
 
 
