@@ -150,6 +150,36 @@ Net effect: last week’s scatter stays your comparative “first look,” while
 <img width="1079" height="662" alt="image" src="https://github.com/user-attachments/assets/6c9fe9e6-b9d6-4e74-a536-f6185597312d" />
 
 
+What’s new — October 28, 2025 (Week 5: Filtering Power & Highlights)
+•	Multi-select Industries + Spotlighting: Pick multiple industries at once; selected series/points pop with colored halos and thicker strokes while everything else fades to ~8% opacity. If nothing’s selected, the view returns to normal automatically.
+
+•	Top-K filter: Show only the top K by Size (Market/Volume) or by Impact (X×Y) to focus on the most consequential items fast.
+
+•	Shareable state: The app now writes your settings to the URL hash (view, metrics, filters), so you can copy the link and others see the exact same view.
+
+•	Legend refinement in Trends: Click to toggle visibility; Alt/⌘-click to solo a single line for quick comparisons.
+
+•	Polish: Clearer empty-state messages, steadier tooltip formatting, and consistent right-side legend spacing across views.
+
+What stayed from last week
+•	Explorable Scatter core: User-selectable X/Y metrics, Year filter, percent tick toggles, and median quadrant overlay for quick “gain vs pain” reads.
+
+•	Size legend: Quantile bubbles still provide context whenever a size metric is active.
+
+•	Faceting by Regulation: Optional 3-up small multiples (Lenient / Moderate / Strict) with shared scales remain available.
+
+•	All-years rollups: Mean / Median / Latest aggregation options still supported.
+
+•	Trends view: Slope/line chart of AI Adoption (%) vs Year, one line per series, with temporal tooltip (value + Δ vs previous year) and a unified view switcher to flip between Scatter and Trends.
+
+Net effect: Last week gave us direction over time; this week adds control. You can now zero in on the exact industries that matter, pare the view down to the top movers, and share the precise state with one link, without losing the exploratory feel that made the scatter useful.
+
+<img width="1723" height="743" alt="image" src="https://github.com/user-attachments/assets/5f797ca6-25ad-491c-abcc-7eb0fb643682" />
+
+<img width="1107" height="708" alt="image" src="https://github.com/user-attachments/assets/b53a691c-7455-4978-89e7-9cfb4b9942da" />
+
+
+
 
 ## Open Questions
 
