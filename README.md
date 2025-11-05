@@ -179,6 +179,35 @@ Net effect: Last week gave us direction over time; this week adds control. You c
 <img width="1107" height="708" alt="image" src="https://github.com/user-attachments/assets/b53a691c-7455-4978-89e7-9cfb4b9942da" />
 
 
+What’s new — November 5, 2025 (Week 11 polish on previous week’s features)
+•	Kept the multi-select highlighting workflow: the Industry multi-select still drives a “spotlight” mode — selected industries get color, stroke, and halo; everything else drops to low opacity so patterns are easier to read in dense views.
+
+•	Top-K stays first-class: you can still switch between “None,” “Size,” and “Impact (X×Y)” and choose K (5/10/15/20) to strip the view down to the most consequential points.
+
+•	URL hash persistence is active: view (Scatter/Trends), chosen metrics, year, selected industries, and Top-K mode are saved in the URL, so you can paste the link and classmates see the same slice.
+
+•	Consistent legend panel: right-side legend remains, aligned with the updated font/styling, so both Scatter and Trends look like one app.
+
+•	Light UI polish: wrapped controls, friendlier container styling, and clearer titles/axis labels to make the visualization more “shareable” for the final phase.
+
+What stayed from last week
+•	Explorable Scatter core (X/Y pickers, year filter, percent ticks).
+
+•	Quadrant overlay (median crosshairs to read “gain vs pain” fast).
+
+•	Highlight halos for selected industries.
+
+•	Trends view with per-series tooltip (value + Δ vs previous year) and legend click to isolate.
+
+•	All-years aggregation logic and the overall two-view structure.
+
+Net effect: we didn’t change the mental model — we tightened it. You still explore first (scatter), explain second (trends), but now the view is cleaner, shareable, and looks closer to something you could show outside class.
+
+<img width="1071" height="817" alt="image" src="https://github.com/user-attachments/assets/4fc2a166-9997-4255-94b8-ca834bf4a660" />
+
+<img width="1062" height="790" alt="image" src="https://github.com/user-attachments/assets/f07697aa-bdab-4f87-8302-9c21dfbe79f4" />
+
+
 
 
 ## Open Questions
