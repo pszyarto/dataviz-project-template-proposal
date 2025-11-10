@@ -209,6 +209,143 @@ Net effect: we didn’t change the mental model — we tightened it. You still e
 
 
 
+Paul Szyarto
+CS573-F25-F01: Data Visualization
+Project Report & Presentation First Draft 
+ 
+AI Adoption & Impact Explorer
+Goal: build an interactive visualization that lets people explore how AI adoption, AI-driven revenue, job loss, trust, and regulation vary across countries, industries, and years, and make it explorable enough that someone can answer their own questions without reading the raw CSV.
+2-min walkthrough video: https://youtu.be/TEmd9y2fOKQ 
+
+Screenshots: 
+<img width="975" height="732" alt="image" src="https://github.com/user-attachments/assets/eaaca751-e730-4061-bbe0-bdafa49881e5" />
+<img width="975" height="715" alt="image" src="https://github.com/user-attachments/assets/9ab9122d-4058-4004-a134-7c0009c6af2d" />
+
+ 
+1. Background & Data
+I started with a synthetic but rich CSV called Global_AI_Content_Impact_Dataset.csv (I also support data.csv as a fallback). Each row represents AI-related metrics for a country–year–industry combo.
+Columns (the ones I use the most):
+•	Country
+•	Year
+•	Industry
+•	AI Adoption Rate (%)
+•	Job Loss Due to AI (%)
+•	Revenue Increase Due to AI (%)
+•	Human-AI Collaboration Rate (%)
+•	AI-Generated Content Volume (TBs per year)
+•	Regulation Status (Lenient / Moderate / Strict)
+•	Consumer Trust in AI (%)
+•	Market Share of AI Companies (%)
+When the app loads, it:
+1.	fetches the CSV,
+2.	auto-detects delimiter (CSV vs TSV),
+3.	coerces numeric/percent values into real numbers,
+4.	builds lists for year, industry, and numeric metrics.
+That gives us enough to make the views dynamic instead of hard-coding column names.
+
+2. What I Wanted to Answer
+I framed the visualization around a few recurring questions:
+1.	“Where are AI-heavy industries right now?” → scatterplot with X/Y selection.
+2.	“Is more AI always good?” → quadrant view for “gain vs pain” (revenue ↑ vs job loss ↑).
+3.	“How is this changing over time?” → trends/slope chart of AI adoption by year.
+4.	“Does regulation/trust matter?” → (earlier weeks) faceting by regulation.
+5.	“Can I focus on just my industries?” → week 5+ multi-select + highlight.
+So, the app is basically: explore first (scatter), explain second (trends).
+
+3. Current Features (the app today)
+3.1 View switcher
+At the top there's a “View:” dropdown with two modes:
+•	Scatter – compare metrics in a single year
+•	Trends – see lines over time for a country or for an industry
+The view is also written to the URL hash, so you can share the link and other people will open in the same mode.
+
+3.2 Scatter View (core)
+This is still the “home” view.
+Controls:
+•	Year: “All years” or a single year
+•	X: any numeric column (defaults to AI Adoption)
+•	Y: any numeric column (defaults to something impact-y like Job Loss/Displacement)
+•	X% / Y% toggles: format axes as percentages when the data is a rate
+•	Industry (multi): pick 1+ industries to highlight
+•	Highlight selection: when on, non-selected points fade to ~8% opacity
+•	Top K: show only the top 5/10/15/20 points by
+o	Size (Market/Volume) or
+o	Impact (X × Y)
+Visuals:
+•	circles for each country–industry–year row
+•	color = industry (fallback to country if industry missing)
+•	quadrant overlay = median X and median Y → helps read “high gain / high pain”
+•	tooltip shows country · industry · year and all selected metrics
+•	right-side legend with industry colors
+Why it’s useful: in one screen I can see which industries both adopt AI a lot and take a revenue hit or gain, and then narrow that to the industries I care about.
+
+3.3 Highlighting (Week 5+)
+This is one of the key improvements.
+•	The Industry (multi) control is not just a filter — it’s a spotlight.
+•	Selected industries:
+o	keep normal color
+o	get a slightly thicker stroke
+o	get a soft halo behind them
+•	Everything else sits in the background at low opacity
+•	If you deselect everything, the chart goes back to normal → no dead ends.
+This is nicer than hard filtering because you can still see context.
+
+3.4 Top-K Focus
+Sometimes the scatter is too busy.
+•	“Top K by Size” uses columns like Market Share of AI Companies (%) or content volume (if present).
+•	“Top K by Impact” multiplies the current X and Y choice → surfaces the “biggest + most affected” points.
+•	K is user-selectable.
+Great for demos, you can get to a punchy chart in 2 clicks.
+
+3.5 Trends View (slope/line)
+This was added after the scatter was stable.
+How it works:
+•	Pick a mode:
+o	“Within Country (lines = Industry)” → fix the country, compare industries over time
+o	“Within Industry (lines = Country)” → fix the industry, compare countries over time
+•	X = Year
+•	Y = AI Adoption Rate (%)
+•	One line per series (industry or country)
+•	Tooltip shows value and Δ vs previous year
+•	Legend is clickable:
+o	click to hide/show a line
+o	Alt/⌘-click to solo a line
+This turns the project from “snapshot” to “momentum.”
+
+3.6 URL Hash (Shareable State)
+Every time you change key controls, the app writes to the URL hash:
+#{"view":"Scatter","year":"2024","x":"AI Adoption Rate (%)", ...}
+That means:
+•	you can paste the link in Discord,
+•	your classmate opens it and sees exactly what you were seeing.
+This was part of the “make it presentable” + “ready to share” push.
+
+4. How It Evolved (week-by-week-ish)
+•	Week 2–3: basic scatter, column auto-detection, year/industry filters, axes as %.
+•	Week 3: quadrants, better tooltips, legend to the right.
+•	Week 4: added the Trends view with line chart; legend-click to isolate; tooltip with delta.
+•	Week 5: multi-select industry + highlight, Top K, URL hash.
+•	Week 11 polish: make it feel like one app, keep legend consistent, keep spotlight behavior, and get the README/report together.
+
+5. Interesting Takeaways (from playing with it)
+•	Some industries show high adoption + high job loss → classic “AI disruption” quadrants.
+•	Regulation doesn’t kill adoption in the data — you can still find high-adoption rows even under Strict.
+•	When you switch to Trends and pick a single country, industries don’t all rise at once — some lag, which is nice to show in the video.
+
+6. How to Run It
+1.	Open the VizHub project (or any static server).
+2.	Make sure index.html loads D3 and your index.js which imports viz.js.
+3.	Put your CSV in the same folder as data.csv or name it Global_AI_Content_Impact_Dataset.csv.
+4.	Open in the browser. Done.
+
+7. Next Steps (not all done yet)
+•	Mobile layout: wrap controls better, maybe collapse the legend.
+•	Voronoi/quad-tree hover: to make tooltips easier on dense scatters.
+•	Saved “views”: presets like “Revenue vs Job Loss” or “Trust vs Adoption.”
+•	Screenshot/export button so people can capture their current configuration.
+•	Better size legend in the scatter when market share is active (right now it’s implicit).
+
+
 
 ## Open Questions
 
