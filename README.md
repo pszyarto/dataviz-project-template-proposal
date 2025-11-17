@@ -345,6 +345,17 @@ This was part of the “make it presentable” + “ready to share” push.
 •	Screenshot/export button so people can capture their current configuration.
 •	Better size legend in the scatter when market share is active (right now it’s implicit).
 
+To improve upon my model and to clear up some jankiness, I have implemented the following changes:
+
+•    Controls reorganized into logical groups (Filters, Axes, Highlight/Top-K) to reduce UI clutter and make interactions more obvious.
+•    Subtitle added under the main title to explain what the explorer shows and how to use it (filter + hover).
+•    Interactive legend implemented so users can toggle industries on/off or “solo” one category with modifier keys, cutting down visual noise.
+•    Bubble clutter reduced by slightly shrinking point sizes and lowering default opacity, especially for non-highlighted points.
+•    Bubble-size legend added when a size field is used, so users know exactly what bubble area represents.
+•    Axis tick density lowered (fewer ticks, clearer formatting) to improve readability.
+•    Highlighting behavior refined so selected industries stand out more clearly, while non-selected ones fade but stay visible for context.
+
+<img width="1063" height="817" alt="image" src="https://github.com/user-attachments/assets/a7798634-550b-4e9d-b465-839d795296c5" />
 
 
 ## Open Questions
